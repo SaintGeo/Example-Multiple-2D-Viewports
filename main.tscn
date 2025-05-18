@@ -14,12 +14,10 @@ fill_from = Vector2(0.298165, 0.298165)
 [sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
 viewport_path = NodePath("GameCanvas/Viewport")
 
-[node name="main" type="Node2D" node_paths=PackedStringArray("game_canvas", "viewport", "HUD", "viewport_display", "other_camera")]
+[node name="main" type="Node2D" node_paths=PackedStringArray("game_canvas", "viewport", "other_camera")]
 script = ExtResource("1_ig7tw")
 game_canvas = NodePath("GameCanvas")
 viewport = NodePath("GameCanvas/Viewport")
-HUD = NodePath("HUDCanvas")
-viewport_display = NodePath("HUDCanvas/Display")
 other_camera = NodePath("GameCanvas/Viewport/OtherCamera")
 
 [node name="GameCanvas" type="CanvasLayer" parent="."]
@@ -47,8 +45,10 @@ layer = 2
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -204.0
-offset_bottom = 187.0
+offset_left = -273.0
+offset_top = 118.0
+offset_right = -69.0
+offset_bottom = 305.0
 grow_horizontal = 0
 texture = SubResource("ViewportTexture_1bvp3")
 expand_mode = 1

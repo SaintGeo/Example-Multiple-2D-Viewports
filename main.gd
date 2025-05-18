@@ -2,8 +2,6 @@ extends Node2D
 
 @export var game_canvas : CanvasLayer
 @export var viewport : Viewport
-@export var HUD : CanvasLayer
-@export var viewport_display : TextureRect
 @export var other_camera : Camera2D
 
 func _ready() -> void:
@@ -13,9 +11,7 @@ func _ready() -> void:
 	var game_world : World2D = get_viewport().world_2d
 	viewport.world_2d = game_world
 
-
-
-## move the OtherCamera to a random spot 0 - 800
+## move the OtherCamera to a random spot 200 - 800
 func _on_button_pressed() -> void:
-	var x := Vector2(randi_range(0, 1000), randi_range(0, 1000))
+	var x := Vector2(randi_range(200, 800), randi_range(200, 800))
 	other_camera.position = x
