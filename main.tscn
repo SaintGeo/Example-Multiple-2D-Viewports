@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://cc3yg4n3fgt86"]
+
+[ext_resource type="Script" uid="uid://cx553tpos3yi6" path="res://main.gd" id="1_ig7tw"]
+[ext_resource type="Script" uid="uid://c1nhreydpi7ah" path="res://camera.gd" id="2_0xm2m"]
+
+[sub_resource type="Gradient" id="Gradient_0xm2m"]
+offsets = PackedFloat32Array(0.285714, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h2yge"]
+gradient = SubResource("Gradient_0xm2m")
+fill = 2
+fill_from = Vector2(0.298165, 0.298165)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1bvp3"]
+viewport_path = NodePath("GameCanvas/Viewport")
+
+[node name="main" type="Node2D" node_paths=PackedStringArray("game_canvas", "viewport", "HUD", "viewport_display", "other_camera")]
+script = ExtResource("1_ig7tw")
+game_canvas = NodePath("GameCanvas")
+viewport = NodePath("GameCanvas/Viewport")
+HUD = NodePath("HUDCanvas")
+viewport_display = NodePath("HUDCanvas/Display")
+other_camera = NodePath("GameCanvas/Viewport/OtherCamera")
+
+[node name="GameCanvas" type="CanvasLayer" parent="."]
+follow_viewport_enabled = true
+
+[node name="Camera" type="Camera2D" parent="GameCanvas"]
+script = ExtResource("2_0xm2m")
+
+[node name="BackgroundColor" type="TextureRect" parent="GameCanvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture2D_h2yge")
+
+[node name="Viewport" type="SubViewport" parent="GameCanvas"]
+
+[node name="OtherCamera" type="Camera2D" parent="GameCanvas/Viewport"]
+
+[node name="HUDCanvas" type="CanvasLayer" parent="."]
+layer = 2
+
+[node name="Display" type="TextureRect" parent="HUDCanvas"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -204.0
+offset_bottom = 187.0
+grow_horizontal = 0
+texture = SubResource("ViewportTexture_1bvp3")
+expand_mode = 1
+
+[node name="Button" type="Button" parent="HUDCanvas"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Move other camera to random spot"
+
+[connection signal="pressed" from="HUDCanvas/Button" to="." method="_on_button_pressed"]
